@@ -1,14 +1,14 @@
 version: '3'
 
 services:
-  recrutements-app:
+  matching-app:
     build: .
     ports:
-      - "8085:8080"
+      - "8084:8080"
     depends_on:
       - postgres
 
-  postgres:
+  matching-postgres:
     image: postgres
     ports:
       - "5436:5432"
