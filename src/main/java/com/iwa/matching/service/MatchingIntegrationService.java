@@ -31,7 +31,7 @@ public class MatchingIntegrationService {
 
     private static final String OFFRES_API_URL = "http://localhost:8080/recrutements-app/api/offres";
 
-    private final String CANDIDAT_API_URL = "http://external.api/candidats";
+    private final String CANDIDAT_API_URL = "http://localhost:3000/candidats";
 
     public void performMatchingAndSaveResults() {
         // 1. Récupérer les données des offres
@@ -62,8 +62,8 @@ public class MatchingIntegrationService {
     }
 
     // planifier l'exécution du processus de matching toutes les 10 minutes
-    // @Scheduled(fixedRate = 600000) // 10 minutes en millisecondes
-    // public void scheduledMatching() {
-    //    performMatchingAndSaveResults();
-    // }
+    @Scheduled(fixedRate = 600000) // 10 minutes en millisecondes
+    public void scheduledMatching() {
+        performMatchingAndSaveResults();
+    }
 }

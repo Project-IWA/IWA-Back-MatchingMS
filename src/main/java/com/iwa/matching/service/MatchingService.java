@@ -52,4 +52,10 @@ public class MatchingService {
         }
         return false; // Aucun match
     }
+
+    // Méthode pour supprimer toutes les occurrences d'un candidat
+    public void deleteCandidatOccurrences(String email) {
+        List<MatcherCandidat> matches = matcherCandidatRepository.findByEmailCandidat(email);
+        matcherCandidatRepository.deleteAll(matches);
+    }
 }

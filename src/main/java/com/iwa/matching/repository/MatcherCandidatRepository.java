@@ -4,7 +4,10 @@ import com.iwa.matching.model.MatcherCandidat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface MatcherCandidatRepository extends JpaRepository<MatcherCandidat, Long> {
-    // Pour le moment, nous n'avons pas besoin de méthodes personnalisées
+    // Méthodes personnalisées
+    List<MatcherCandidat> findByEmailCandidat(String emailCandidat);
 }

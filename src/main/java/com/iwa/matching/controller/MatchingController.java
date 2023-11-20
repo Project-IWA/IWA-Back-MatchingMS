@@ -35,5 +35,12 @@ public class MatchingController {
         return ResponseEntity.ok(matching);
     }
 
+    // Endpoint pour supprimer toutes les occurrences d'un candidat spécifique
+    @DeleteMapping("/delete-candidat/{email}")
+    public ResponseEntity<?> deleteCandidatOccurrences(@PathVariable String email) {
+        matchingService.deleteCandidatOccurrences(email);
+        return ResponseEntity.ok().build();
+    }
+
 
 }
