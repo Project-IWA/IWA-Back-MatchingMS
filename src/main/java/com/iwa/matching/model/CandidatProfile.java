@@ -21,6 +21,7 @@ public class CandidatProfile {
     private String photo; // URL de la photo
     private String cv; // URL du CV
     private String shortBio;
+    private Etat etat = Etat.DISPONIBLE;
     private List<Reference> references;
     private List<Experience> experiences;
     private List<Disponibilite> disponibilites;
@@ -86,5 +87,10 @@ public class CandidatProfile {
     public static class Etablissement {
         private String establishmentName;
         private Adresse establishmentAddress;
+    }
+
+    public enum Etat {
+        DISPONIBLE,
+        INDISPONIBLE
     }
 }

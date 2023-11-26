@@ -58,4 +58,8 @@ public class MatchingService {
         List<MatcherCandidat> matches = matcherCandidatRepository.findByEmailCandidat(email);
         matcherCandidatRepository.deleteAll(matches);
     }
+
+    public void removeMatchesByOffreId(Long idOffre) {
+        matcherCandidatRepository.deleteByIdOffre(idOffre);
+    }
 }

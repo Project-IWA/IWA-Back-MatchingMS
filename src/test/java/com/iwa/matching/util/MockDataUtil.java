@@ -88,6 +88,7 @@ public class MockDataUtil {
                 "http://example.com/photo.jpg", // photo URL
                 "http://example.com/cv.pdf", // cv URL
                 "A brief bio about the candidate.", // shortBio
+                CandidatProfile.Etat.DISPONIBLE, // etat
                 List.of(mockReference), // references
                 List.of(mockExperience), // experiences
                 List.of(mockDisponibilite), // disponibilites

@@ -42,5 +42,11 @@ public class MatchingController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/remove-matches/{idOffre}")
+    public ResponseEntity<?> removeMatchesByOffreId(@PathVariable Long idOffre) {
+        matchingService.removeMatchesByOffreId(idOffre);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

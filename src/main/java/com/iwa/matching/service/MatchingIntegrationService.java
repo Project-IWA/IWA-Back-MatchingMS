@@ -43,6 +43,7 @@ public class MatchingIntegrationService {
 
         for (Offre offre : offres) {
             Set<CandidatProfile> matchedCandidats = List.of(candidatProfiles).stream()
+                    .filter(candidat -> candidat.getEtat() == CandidatProfile.Etat.DISPONIBLE) // Prendre en compte que les candidats disponibles
                     .filter(candidat -> matchingService.matchCandidatWithOffre(candidat, offre))
                     .collect(Collectors.toSet());
 

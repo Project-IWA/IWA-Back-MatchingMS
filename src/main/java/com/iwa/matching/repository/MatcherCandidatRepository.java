@@ -10,4 +10,6 @@ import java.util.List;
 public interface MatcherCandidatRepository extends JpaRepository<MatcherCandidat, Long> {
     // Méthodes personnalisées
     List<MatcherCandidat> findByEmailCandidat(String emailCandidat);
+
+    void deleteByIdOffre(Long idOffre);
 }
