@@ -53,6 +53,10 @@ public class MatchingService {
         return false; // Aucun match
     }
 
+    public List<MatcherCandidat> getMatchesByOffreId(Long idOffre) {
+        return matcherCandidatRepository.findByIdOffre(idOffre);
+    }
+
     // Méthode pour supprimer toutes les occurrences d'un candidat
     public void deleteCandidatOccurrences(String email) {
         List<MatcherCandidat> matches = matcherCandidatRepository.findByEmailCandidat(email);

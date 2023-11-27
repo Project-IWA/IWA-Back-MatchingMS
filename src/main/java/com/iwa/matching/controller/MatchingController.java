@@ -35,6 +35,13 @@ public class MatchingController {
         return ResponseEntity.ok(matching);
     }
 
+    // Endpoint pour récupérer les matchings pour une offre déterminée
+    @GetMapping("/get-matches/{idOffre}")
+    public ResponseEntity<List<MatcherCandidat>> getMatchesByOffreId(@PathVariable Long idOffre) {
+        List<MatcherCandidat> matches = matchingService.getMatchesByOffreId(idOffre);
+        return ResponseEntity.ok(matches);
+    }
+
     // Endpoint pour supprimer toutes les occurrences d'un candidat spécifique
     @DeleteMapping("/delete-candidat/{email}")
     public ResponseEntity<?> deleteCandidatOccurrences(@PathVariable String email) {

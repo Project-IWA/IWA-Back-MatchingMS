@@ -11,5 +11,8 @@ public interface MatcherCandidatRepository extends JpaRepository<MatcherCandidat
     // Méthodes personnalisées
     List<MatcherCandidat> findByEmailCandidat(String emailCandidat);
 
+    // find by id offre
+    List<MatcherCandidat> findByIdOffre(Long idOffre);
+
     void deleteByIdOffre(Long idOffre);
 }

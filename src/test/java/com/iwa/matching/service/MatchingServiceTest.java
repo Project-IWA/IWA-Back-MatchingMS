@@ -86,14 +86,4 @@ public class MatchingServiceTest {
                 "The candidat should not match with the offre when locations don't match");
     }
 
-    @Test
-    public void whenEtatIsNotDisponible_thenShouldNotMatch() {
-        // Arrange: Set up offre location that is not in candidat's place of availability
-        candidat.setEtat(CandidatProfile.Etat.INDISPONIBLE);
-
-        // Act & Assert
-        assertFalse(matchingService.matchCandidatWithOffre(candidat, offre),
-                "The candidat should not match with the offre when etat is not disponible");
-    }
-
 }

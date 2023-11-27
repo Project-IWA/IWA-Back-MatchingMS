@@ -29,7 +29,7 @@ public class MatchingIntegrationService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String OFFRES_API_URL = "http://localhost:8080/recrutements-app/api/offres";
+    private static final String OFFRES_API_URL = "";
 
     private final String CANDIDAT_API_URL = "http://localhost:3000/candidats";
 
