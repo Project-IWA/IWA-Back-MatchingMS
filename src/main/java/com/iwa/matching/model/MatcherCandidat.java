@@ -20,8 +20,8 @@ public class MatcherCandidat {
     @Column(name = "id_offre")
     private Long idOffre;
 
-    @Column(name = "email_candidat")
-    private String emailCandidat;
+    @Column(name = "email")
+    private String email;
 
     // Constructeurs, getters et setters générés par Lombok
 }

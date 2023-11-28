@@ -6,7 +6,7 @@ services:
     ports:
       - "8084:8080"
     depends_on:
-      - postgres
+      - matching-postgres
 
   matching-postgres:
     image: postgres

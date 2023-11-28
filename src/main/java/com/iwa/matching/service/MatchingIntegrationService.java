@@ -29,9 +29,9 @@ public class MatchingIntegrationService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String OFFRES_API_URL = "";
+    private static final String OFFRES_API_URL = "http://recrutements-app:8080/api/offres";
 
-    private final String CANDIDAT_API_URL = "http://localhost:3000/candidats";
+    private final String CANDIDAT_API_URL = "http://candidats-app:8080/api/candidats";
 
     public void performMatchingAndSaveResults() {
         // 1. Récupérer les données des offres
@@ -56,15 +56,20 @@ public class MatchingIntegrationService {
         for (CandidatProfile candidat : matchedCandidats) {
             MatcherCandidat match = new MatcherCandidat();
             match.setIdOffre(offre.getIdOffre());
-            match.setEmailCandidat(candidat.getEmail());
+            match.setEmail(candidat.getEmail());
 
-            matcherCandidatRepository.save(match); // Enregistrer le matching dans la base de données
+            // check that the matching does not already exist in the database
+            if (!matcherCandidatRepository.existsByIdOffreAndEmail(offre.getIdOffre(), candidat.getEmail())) {
+                matcherCandidatRepository.save(match); // Enregistrer le matching dans la base de données
+            }
         }
     }
 
     // planifier l'exécution du processus de matching toutes les 10 minutes
     @Scheduled(fixedRate = 600000) // 10 minutes en millisecondes
     public void scheduledMatching() {
+        System.out.println("Scheduled matching process started...");
         performMatchingAndSaveResults();
+        System.out.println("Scheduled matching process finished.");
     }
 }

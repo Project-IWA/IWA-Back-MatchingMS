@@ -5,22 +5,29 @@ import java.util.List;
 
 import com.iwa.matching.model.CandidatProfile;
 import com.iwa.matching.model.Offre;
+import com.iwa.matching.model.TypeEmploi;
 
 public class MockDataUtil {
 
     public static Offre createMockOffre() {
+        TypeEmploi mockTypeEmploi = new TypeEmploi(
+                1L, // idTypeEmploi
+                "Software Developer" // emploi
+        );
         return new Offre(
                 1L, // idOffre
                 "Software Developer", // emploi
+                "We are looking for a software developer to join our team.", // description
                 new Date(), // dateDebut
                 new Date(), // dateFin
                 55000.0, // salaire
                 "Health insurance, Stock options", // avantages
                 "Open", // etat
                 5, // nombreCandidats
+                "Paris", // ville
                 10L, // idUser
                 20L, // idEtablissement
-                "Paris" // ville
+                mockTypeEmploi // typeEmploi
         );
     }
 

@@ -28,13 +28,26 @@ public class MatchingService {
     public boolean matchCandidatWithOffre(CandidatProfile candidat, Offre offre) {
         // Vérifiez si la catégorie d'emploi correspond
         for (Experience experience : candidat.getExperiences()) {
-            if (offre.getEmploi().equalsIgnoreCase(experience.getJobCategory())) {
-
+            System.out.println("experience.getJobCategory(): " + experience.getJobCategory());
+            System.out.println("offre.getTypeEmploi(): " + offre.getTypeEmploi().getNom());
+            boolean offreTypeEmploiMatchedExperienceJobCategory = offre.getTypeEmploi().getNom().equalsIgnoreCase(experience.getJobCategory());
+            System.out.println("offreTypeEmploiMatchedExperienceJobCategory: " + offreTypeEmploiMatchedExperienceJobCategory);
+            if (offreTypeEmploiMatchedExperienceJobCategory) {
                 // Vérifiez si le candidat est disponible pendant la période de l'offre
                 for (Disponibilite disponibilite : candidat.getDisponibilites()) {
-                    if (disponibilite.getJobCategory().equalsIgnoreCase(offre.getEmploi()) &&
-                            !offre.getDateDebut().after(disponibilite.getEndsAt()) &&
-                            !offre.getDateFin().before(disponibilite.getStartsAt())) {
+                    boolean offreTypeEmploiMatchedDisponibiliteJobCategory = disponibilite.getJobCategory().equalsIgnoreCase(offre.getTypeEmploi().getNom());
+                    boolean offreDateDebutAfterDisponibiliteStartsAt = offre.getDateDebut().after(disponibilite.getStartsAt());
+                    boolean offreDateFinBeforeDisponibiliteEndsAt = offre.getDateFin().before(disponibilite.getEndsAt());
+                    boolean offreDateDebutBeforeOffreDateFin = offre.getDateDebut().before(offre.getDateFin());
+                    System.out.println("offreTypeEmploiMatchedDisponibiliteJobCategory: " + offreTypeEmploiMatchedDisponibiliteJobCategory);
+                    System.out.println("offreDateDebutAfterDisponibiliteStartsAt: " + offreDateDebutAfterDisponibiliteStartsAt);
+                    System.out.println("offreDateFinBeforeDisponibiliteEndsAt: " + offreDateFinBeforeDisponibiliteEndsAt);
+                    System.out.println("offreDateDebutBeforeOffreDateFin: " + offreDateDebutBeforeOffreDateFin);
+
+                    if ((offreTypeEmploiMatchedDisponibiliteJobCategory) &&
+                            (offreDateDebutAfterDisponibiliteStartsAt) &&
+                                (offreDateFinBeforeDisponibiliteEndsAt) &&
+                            (offreDateDebutBeforeOffreDateFin)) {
 
                         // Vérifiez si le lieu de disponibilité correspond à l'emplacement de l'offre
                         // Ici, nous supposons que l'emplacement de l'offre est stocké quelque part dans
@@ -43,7 +56,9 @@ public class MatchingService {
                         // chaînes de caractères.
                         for (String lieu : disponibilite.getPlaces()) {
                             if (lieu.equalsIgnoreCase(offre.getVille())) {
-                                return true; // Match trouvé
+                                boolean isMatched = true;
+                                System.out.println("Matched ? : " + isMatched);
+                                return isMatched; // Match trouvé
                             }
                         }
                     }
@@ -59,11 +74,12 @@ public class MatchingService {
 
     // Méthode pour supprimer toutes les occurrences d'un candidat
     public void deleteCandidatOccurrences(String email) {
-        List<MatcherCandidat> matches = matcherCandidatRepository.findByEmailCandidat(email);
+        List<MatcherCandidat> matches = matcherCandidatRepository.findByEmail(email);
         matcherCandidatRepository.deleteAll(matches);
     }
 
     public void removeMatchesByOffreId(Long idOffre) {
-        matcherCandidatRepository.deleteByIdOffre(idOffre);
+        List<MatcherCandidat> matches = matcherCandidatRepository.findByIdOffre(idOffre);
+        matcherCandidatRepository.deleteAll(matches);
     }
 }
