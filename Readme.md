@@ -13,7 +13,7 @@ Le microservice de gestion des matchings du backend du projet IWA.
 ## **🔧 Prérequis**
 
 - **Java**: 🌟 Version 17.
-- **Spring Boot**: 🚀 Versions 2.7.16.
+- **Spring Boot**: 🚀 Versions 2.7.17.
 - **Docker**: 🐳 Pour orchestrer les conteneurs des microservices et des bases de données.
 - **Maven**: 🛠 Pour la gestion des dépendances et la construction des microservices.
 - **Docker Compose**: 🎼 Pour orchestrer harmonieusement le déploiement des microservices et des bases de données.
